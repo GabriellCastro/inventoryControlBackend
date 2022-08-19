@@ -7,18 +7,32 @@ export class PrismaProductsRepository implements IProductsRepository {
     name: string,
     description: string,
     price: number,
-    image: string
+    image?: string
   ): Promise<Product> {
-    const product = await prisma.product.create({
-      data: {
-        name,
-        description,
-        price,
-        image,
-      },
-    });
 
-    return product;
+    if(image) {
+      const product = await prisma.product.create({
+        data: {
+          name,
+          description,
+          price,
+          image,
+        },
+      });
+  
+      return product;
+    } else {
+      const product = await prisma.product.create({
+        data: {
+          name,
+          description,
+          price,
+        },
+      });
+  
+      return product;
+    }
+
   }
 
   async getAll(): Promise<Product[]> {

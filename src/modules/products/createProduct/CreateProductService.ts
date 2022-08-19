@@ -6,7 +6,7 @@ type Request = {
   name: string;
   description: string;
   price: number;
-  image: string;
+  image?: string;
 };
 
 const schema = Yup.object().shape({
@@ -17,7 +17,6 @@ const schema = Yup.object().shape({
     .min(5, "A descrição do produto deve ter pelo menos 5 caracteres!")
     .required("A descrição do produto é obrigatória!"),
   price: Yup.number().required("O preço do produto é obrigatório!"),
-  image: Yup.string().required("A imagem do produto é obrigatória!"),
 });
 
 export class CreateProductService {
@@ -28,7 +27,7 @@ export class CreateProductService {
     price,
     image,
   }: Request): Promise<Product> {
-    await schema.validate({ name, description, price, image });
+    await schema.validate({ name, description, price });
 
     const product = await this.productRepository.create(
       name,
