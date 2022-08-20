@@ -12,6 +12,6 @@ model Product {
   name        String
   description String
   price       Int
-  image       String
+  image       String?
   createdAt   DateTime @default(now())
 }
