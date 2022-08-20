@@ -11,6 +11,7 @@ model Product {
   id          Int      @id @default(autoincrement())
   name        String
   description String
+  quantity    Int      @default(0)
   price       Int
   image       String?
   createdAt   DateTime @default(now())

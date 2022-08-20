@@ -6,6 +6,7 @@ type Request = {
   id: number;
   name: string;
   description: string;
+  quantity: number;
   price: number;
   image?: string;
 };
@@ -19,17 +20,17 @@ export class EditProductService {
     id,
     name,
     description,
+    quantity,
     price,
     image,
   }: Request): Promise<Product> {
     const product: any = await this.productRepository.findById(id);
 
-    
     if (!product) {
       throw new AppError("Produto não encontrado!");
     }
-    
-    if (!name && !description && !price && !image) {
+
+    if (!name && !description && !price && !image && !quantity) {
       throw new AppError("Nenhum dado para atualizar!");
     }
 
@@ -43,6 +44,7 @@ export class EditProductService {
       id,
       name,
       description,
+      quantity,
       price,
       image
     );

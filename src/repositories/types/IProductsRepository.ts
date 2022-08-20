@@ -4,6 +4,7 @@ export type IProductsRepository = {
   create: (
     name: string,
     description: string,
+    quantity: number,
     price: number,
     image: string
   ) => Promise<Product>;
@@ -14,6 +15,7 @@ export type IProductsRepository = {
     id: number,
     name: string,
     description: string,
+    quantity: number,
     price: number,
     image: string
   ) => Promise<Product>;
