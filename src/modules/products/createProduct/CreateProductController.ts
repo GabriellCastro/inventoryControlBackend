@@ -4,7 +4,7 @@ import { CreateProductService } from "./CreateProductService";
 export class CreateProductController {
   constructor(private createProductService: CreateProductService) {}
 
-  async handle(request: Request, response: Response) {
+  async handle(request: Request, response: Response): Promise<Response> {
     const { name, description, price } = request.body;
     const image = request.file?.path;
 
