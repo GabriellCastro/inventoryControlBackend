@@ -6,14 +6,15 @@ export class EditProductController {
 
   async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
-    const { name, description, price } = request.body;
+    const { name, description, price, quantity } = request.body;
     const image = request.file?.path;
 
     await this.editProductService.execute({
       id: Number(id),
       name,
       description,
-      price,
+      quantity: Number(quantity),
+      price: Number(price),
       image,
     });
 

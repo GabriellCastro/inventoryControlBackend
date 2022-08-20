@@ -5,6 +5,7 @@ import { IProductsRepository } from "../../../repositories/types/IProductsReposi
 type Request = {
   name: string;
   description: string;
+  quantity: number;
   price: number;
   image?: string;
 };
@@ -24,6 +25,7 @@ export class CreateProductService {
   async execute({
     name,
     description,
+    quantity,
     price,
     image,
   }: Request): Promise<Product> {
@@ -32,6 +34,7 @@ export class CreateProductService {
     const product = await this.productRepository.create(
       name,
       description,
+      quantity,
       price,
       image
     );

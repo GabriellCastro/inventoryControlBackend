@@ -6,6 +6,7 @@ export class PrismaProductsRepository implements IProductsRepository {
   async create(
     name: string,
     description: string,
+    quantity: number,
     price: number,
     image?: string
   ): Promise<Product> {
@@ -14,6 +15,7 @@ export class PrismaProductsRepository implements IProductsRepository {
         data: {
           name,
           description,
+          quantity,
           price,
           image,
         },
@@ -65,6 +67,7 @@ export class PrismaProductsRepository implements IProductsRepository {
     id: number,
     name: string,
     description: string,
+    quantity: number,
     price: number,
     image?: string
   ): Promise<Product> {
@@ -75,6 +78,7 @@ export class PrismaProductsRepository implements IProductsRepository {
       data: {
         name,
         description,
+        quantity,
         price,
         image,
       },
