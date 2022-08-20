@@ -9,8 +9,7 @@ export class PrismaProductsRepository implements IProductsRepository {
     price: number,
     image?: string
   ): Promise<Product> {
-
-    if(image) {
+    if (image) {
       const product = await prisma.product.create({
         data: {
           name,
@@ -19,7 +18,7 @@ export class PrismaProductsRepository implements IProductsRepository {
           image,
         },
       });
-  
+
       return product;
     } else {
       const product = await prisma.product.create({
@@ -29,10 +28,9 @@ export class PrismaProductsRepository implements IProductsRepository {
           price,
         },
       });
-  
+
       return product;
     }
-
   }
 
   async getAll(): Promise<Product[]> {
@@ -57,6 +55,28 @@ export class PrismaProductsRepository implements IProductsRepository {
     const product = await prisma.product.delete({
       where: {
         id,
+      },
+    });
+
+    return product;
+  }
+
+  async update(
+    id: number,
+    name: string,
+    description: string,
+    price: number,
+    image?: string
+  ): Promise<Product> {
+    const product = await prisma.product.update({
+      where: {
+        id,
+      },
+      data: {
+        name,
+        description,
+        price,
+        image,
       },
     });
 
