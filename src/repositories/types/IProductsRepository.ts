@@ -8,4 +8,6 @@ export type IProductsRepository = {
     image: string
   ) => Promise<Product>;
   getAll: () => Promise<Product[]>;
+  delete: (id: number) => Promise<Product>;
+  findById: (id: number) => Promise<Product | null>;
 };
