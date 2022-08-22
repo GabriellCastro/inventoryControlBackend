@@ -5,8 +5,8 @@ export class CreateProductController {
   constructor(private createProductService: CreateProductService) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { name, description, price, quantity } = request.body;
-    const image = request.file?.path;
+    const { name, description, quantity, price } = request.body;
+    const image = request.file?.path.trim();
 
     const product = await this.createProductService.execute({
       name,

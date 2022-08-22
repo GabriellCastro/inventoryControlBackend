@@ -6,7 +6,7 @@ export class EditProductController {
 
   async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
-    const { name, description, price, quantity } = request.body;
+    const { name, description, quantity, price } = request.body;
     const image = request.file?.path;
 
     await this.editProductService.execute({
