@@ -11,8 +11,6 @@ type Request = {
   image?: string;
 };
 
-const validValues = ["name", "description", "price", "image"];
-
 export class EditProductService {
   constructor(private productRepository: IProductsRepository) {}
 
@@ -34,11 +32,22 @@ export class EditProductService {
       throw new AppError("Nenhum dado para atualizar!");
     }
 
-    validValues.forEach((value) => {
-      if (product[value] !== undefined || product[value] !== null) {
-        product[value] = product[value];
-      }
-    });
+    // refactor this condition
+    if (!name) {
+      name = product.name;
+    }
+    if (!description) {
+      description = product.description;
+    }
+    if (!price) {
+      price = product.price;
+    }
+    if (!quantity) {
+      quantity = product.quantity;
+    }
+    if (!image) {
+      image = product.image;
+    }
 
     const updatedProduct = await this.productRepository.update(
       id,
